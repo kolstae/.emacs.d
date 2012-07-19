@@ -3,3 +3,6 @@
 
 ;; Load paredit in clojure mode
 (add-hook 'clojure-mode-hook 'paredit-mode)
+
+;; Midje disable ANSI-colors
+(setenv "MIDJE_COLORIZE" "false")
