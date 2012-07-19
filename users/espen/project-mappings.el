@@ -39,3 +39,15 @@
                    (ffip-local-patterns "*.el" "*.md" "*.org"))
 
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
+
+;; Clojure-test
+
+(defun custom-persp/clj-test ()
+  (interactive)
+  (custom-persp "clj-test"
+                (find-file "~/projects/clojure-test/project.clj")))
+
+(project-specifics "clojure-test"
+                   (ffip-local-patterns "*.clj" "*.md"))
+
+(define-key persp-mode-map (kbd "C-x p c") 'custom-persp/clj-test)
