@@ -20,7 +20,7 @@
 
 (require 'oppdrag-mode)
 
-(project-specifics "oppdrag-services"
+(project-specifics "projects/oppdrag"
                    (set (make-local-variable 'slime-js-target-url) "http://local.finn.no:8080/")
                    (set (make-local-variable 'slime-js-connect-url) "http://local.finn.no:8009")
                    (set (make-local-variable 'slime-js-starting-url) "/oppdrag/")
@@ -47,7 +47,7 @@
   (custom-persp "clj-test"
                 (find-file "~/projects/clojure-test/project.clj")))
 
-(project-specifics "clojure-test"
+(project-specifics "projects/clojure-test"
                    (ffip-local-patterns "*.clj" "*.md"))
 
 (define-key persp-mode-map (kbd "C-x p c") 'custom-persp/clj-test)
