@@ -64,6 +64,9 @@
 ;; Show me empty lines after buffer end
 (set-default 'indicate-empty-lines t)
 
+;; Easily navigate sillycased words
+(global-subword-mode 1)
+
 ;; Don't break lines for me, please
 (setq-default truncate-lines t)
 
@@ -93,8 +96,17 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
-;; Add marmalade to package repos
-(eval-after-load "package"
-  '(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")))
+;; Nic says eval-expression-print-level needs to be set to 0 (turned off) so
+;; that you can always see what's happening.
+(setq eval-expression-print-level nil)
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
+
+;; When popping the mark, continue popping until the cursor actually moves
+(defadvice pop-to-mark-command (around ensure-new-position activate)
+  (let ((p (point)))
+    (dotimes (i 10)
+      (when (= p (point)) ad-do-it))))
 
 (provide 'sane-defaults)

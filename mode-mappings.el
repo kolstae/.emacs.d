@@ -22,14 +22,17 @@
 
 ;; HTML
 (add-to-list 'auto-mode-alist '("\\.html\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp$" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.jspf$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.tag$" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.vm$" . html-mode))
 (add-hook 'sgml-mode-hook
           (lambda ()
             (require 'rename-sgml-tag)
             (define-key sgml-mode-map (kbd "C-c C-r") 'rename-sgml-tag)))
+
+;; JSP
+(autoload 'crappy-jsp-mode "crappy-jsp-mode")
+(add-to-list 'auto-mode-alist '("\\.jsp$" . crappy-jsp-mode))
+(add-to-list 'auto-mode-alist '("\\.jspf$" . crappy-jsp-mode))
 
 ;; Ruby
 (autoload 'rhtml-mode "rhtml-mode")
@@ -40,6 +43,8 @@
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
+
+(eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
 
 ;; Puppet
 (autoload 'puppet-mode "puppet-mode")

@@ -12,6 +12,24 @@
 (define-key global-map (kbd "M-s +") 'zoom-in)
 (define-key global-map (kbd "M-s -") 'zoom-out)
 
+;; Experimental rebind of C-b and C-f
+(fset 'quick-switch-buffer [?\C-x ?b return])
+(global-set-key (kbd "C-b") 'quick-switch-buffer) ;; toggle two most recent buffers
+(global-set-key (kbd "C-f") 'duplicate-current-line-or-region) ;; duplicate line
+
+;; Experimental super on right command key. s-x is kill-region for instance.
+(setq mac-right-command-modifier 'super)
+
+;; Experimental: keep region when undoing in region
+(defadvice undo-tree-undo (around keep-region activate)
+  (if (use-region-p)
+      (let ((m (set-marker (make-marker) (mark)))
+            (p (set-marker (make-marker) (point))))
+        ad-do-it
+        (goto-char p)
+        (set-marker (mark-marker) m))
+    ad-do-it))
+
 ;; Use GNU ls - install with:
 ;;    brew install xz coreutils
 (setq insert-directory-program "gls")
