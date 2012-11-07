@@ -4,7 +4,7 @@
 (global-set-key (kbd "C-x C-c") 'delete-frame)
 
 ;; Completion that uses many different methods to find options.
-(global-set-key (kbd "C-.") 'hippie-expand)
+(global-set-key (kbd "C-.") 'hippie-expand-no-case-fold)
 (global-set-key (kbd "C-:") 'hippie-expand-lines)
 
 ;; Smart M-x
@@ -29,6 +29,14 @@
 (global-set-key (kbd "C-æ") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-Æ") 'mc/mark-more-like-this-extended)
 (global-set-key (kbd "M-å") 'mc/mark-all-in-region)
+
+;; Symbol and word specific mark-more
+(global-set-key (kbd "s-æ") 'mc/mark-next-word-like-this)
+(global-set-key (kbd "s-å") 'mc/mark-previous-word-like-this)
+(global-set-key (kbd "M-s-æ") 'mc/mark-all-words-like-this)
+(global-set-key (kbd "s-Æ") 'mc/mark-next-symbol-like-this)
+(global-set-key (kbd "s-Å") 'mc/mark-previous-symbol-like-this)
+(global-set-key (kbd "M-s-Æ") 'mc/mark-all-symbols-like-this)
 
 ;; Set anchor to start rectangular-region-mode
 (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
@@ -117,9 +125,6 @@
 ;; Indentation help
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 
-;; Fetch the contents at a URL, display it raw.
-(global-set-key (kbd "C-x h") 'view-url)
-
 ;; Help should search more than just commands
 (global-set-key (kbd "<f1> a") 'apropos)
 
@@ -189,9 +194,6 @@
 (global-set-key (kbd "<s-up>") 'windmove-up)
 (global-set-key (kbd "<s-down>") 'windmove-down)
 
-;; Mark all
-(global-set-key (kbd "C-c a") 'mark-whole-buffer)
-
 ;; Magit
 (global-set-key (kbd "C-x m") 'magit-status) (autoload 'magit-status "magit")
 
@@ -232,7 +234,8 @@
 (global-set-key (kbd "C-x M-j") '(lambda () (interactive) (dired-jump 1)))
 
 ;; Easy-mode fullscreen rgrep
-(global-set-key (kbd "M-s s") 'rgrep-fullscreen)
+(global-set-key (kbd "M-s s") 'git-grep-fullscreen)
+(global-set-key (kbd "M-s S") 'rgrep-fullscreen)
 
 ;; Display and edit occurances of regexp in buffer
 (global-set-key (kbd "C-c o") 'occur)
@@ -256,6 +259,7 @@
 (global-set-key (kbd "C-x C-o or") (ffip-create-pattern-file-finder "*.org"))
 (global-set-key (kbd "C-x C-o ph") (ffip-create-pattern-file-finder "*.php"))
 (global-set-key (kbd "C-x C-o tx") (ffip-create-pattern-file-finder "*.txt"))
+(global-set-key (kbd "C-x C-o vm") (ffip-create-pattern-file-finder "*.vm"))
 
 ;; View occurrence in occur mode
 (define-key occur-mode-map (kbd "v") 'occur-mode-display-occurrence)

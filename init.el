@@ -49,13 +49,26 @@
 (require 'setup-package)
 
 ;; Install extensions if they're missing
-(packages-install
- (cons 'magit melpa)
- (cons 'elisp-slime-nav melpa)
- (cons 'elnode marmalade)
- (cons 'slime-js marmalade)
- (cons 'clojure-mode melpa)
- (cons 'nrepl melpa))
+(defun init--install-packages ()
+  (packages-install
+   (cons 'exec-path-from-shell melpa)
+   (cons 'magit melpa)
+   (cons 'paredit melpa)
+   (cons 'elisp-slime-nav melpa)
+   (cons 'elnode marmalade)
+   (cons 'slime-js marmalade)
+   (cons 'clojure-mode melpa)
+   (cons 'clojure-test-mode melpa)
+   (cons 'nrepl melpa)))
+
+(condition-case nil
+    (init--install-packages)
+  (error
+   (package-refresh-contents)
+   (init--install-packages)))
+
+;; Setup environment variables from the user's shell.
+(when is-mac (exec-path-from-shell-initialize))
 
 ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
@@ -63,14 +76,15 @@
 (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'magit '(require 'setup-magit))
 (eval-after-load 'grep '(require 'setup-rgrep))
-(eval-after-load 'hippie-exp '(require 'setup-hippie))
 (eval-after-load 'shell '(require 'setup-shell))
+(require 'setup-hippie)
 (require 'setup-yasnippet)
 (require 'setup-ace-jump-mode)
 (require 'setup-perspective)
 (require 'setup-wrap-region)
 (require 'setup-ffip)
-(require 'setup-zencoding)
+(require 'setup-html-mode)
+(require 'setup-paredit)
 
 ;; Load slime-js when asked for
 (autoload 'slime-js-jack-in-browser "setup-slime-js" nil t)
