@@ -51,3 +51,15 @@
                    (ffip-local-patterns "*.clj" "*.md"))
 
 (define-key persp-mode-map (kbd "C-x p c") 'custom-persp/clj-test)
+
+;; Surayia-products
+
+(defun custom-persp/suraiya ()
+  (interactive)
+  (custom-persp "suraiya-products"
+                (find-file "~/projects/suraiya-products/project.clj")))
+
+(project-specifics "projects/suraiya-products"
+                   (ffip-local-patterns "*.clj" "*.md"))
+
+(define-key persp-mode-map (kbd "C-x p s") 'custom-persp/suraiya)
