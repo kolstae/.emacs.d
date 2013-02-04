@@ -23,7 +23,7 @@
   (unwind-protect
       (progn
         (linum-mode 1)
-        (goto-line (read-number "Goto line: ")))
+        (call-interactively 'goto-line))
     (linum-mode -1)))
 
 ;; Add spaces and proper formatting to linum-mode. It uses more room than
@@ -64,6 +64,11 @@
     (deactivate-mark))
   (call-interactively 'isearch-backward))
 
+(eval-after-load "multiple-cursors"
+  '(progn
+     (unsupported-cmd isearch-forward-use-region ".")
+     (unsupported-cmd isearch-backward-use-region ".")))
+
 (defun view-url ()
   "Open a new buffer containing the contents of URL."
   (interactive)
@@ -83,10 +88,9 @@
     (yank)
     (insert (concat "\">" text "</a>"))))
 
-(defun recompile-init ()
-  "Byte-compile all your dotfiles again."
-  (interactive)
-  (byte-recompile-directory dotfiles-dir 0))
+(defun buffer-to-html (buffer)
+  (with-current-buffer (htmlize-buffer buffer)
+    (buffer-string)))
 
 (defun sudo-edit (&optional arg)
   (interactive "p")

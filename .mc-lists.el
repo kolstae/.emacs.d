@@ -19,7 +19,9 @@
         dired-back-to-start-of-files
         duplicate-current-line-or-region
         eval-and-replace
+        fold-this
         forward-paragraph
+        html-wrap-in-tag
         js2-beginning-of-line
         js2-end-of-line
         js2-insert-and-indent
@@ -30,7 +32,11 @@
         markdown-enter-key
         move-line-down
         move-line-up
+        new-line-above
+        org-beginning-of-line
         org-delete-backward-char
+        org-delete-char
+        org-end-of-line
         org-metaleft
         org-metaright
         org-self-insert-command
@@ -38,6 +44,7 @@
         orgtbl-self-insert-command
         quoted-insert
         save-region-or-current-line
+        sgml-delete-tag
         sgml-slash
         slime-space
         wrap-region-trigger
@@ -47,9 +54,8 @@
 
 (setq mc/cmds-to-run-once
       '(
-        eval-expression
-        quit-window
-        toggle-read-only
-        view-echo-area-messages
+        js2r-extract-var
+        js2r-rename-var
+        smex
         wgrep-change-to-wgrep-mode
         ))

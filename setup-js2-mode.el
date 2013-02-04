@@ -12,7 +12,6 @@
 (setq-default js2-include-gears-externs nil)
 (setq-default js2-concat-multiline-strings 'eol)
 
-(require 'js2-mode)
 (require 'js2-refactor)
 
 (require 'js2-imenu-extras)
@@ -53,6 +52,10 @@
 
 ;; Don't redefine C-a for me please, js2-mode
 (define-key js2-mode-map (kbd "C-a") nil)
+
+;; When renaming/deleting js-files, check for corresponding testfile
+(define-key js2-mode-map (kbd "C-x C-r") 'js2r-rename-current-buffer-file)
+(define-key js2-mode-map (kbd "C-x C-k") 'js2r-delete-current-buffer-file)
 
 ;; Use lambda for anonymous functions
 (font-lock-add-keywords

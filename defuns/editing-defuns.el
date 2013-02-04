@@ -1,31 +1,12 @@
 ;; Basic text editing defuns
 
-(defun move-line-down ()
+(defun open-line-below ()
   (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines 1))
-    (forward-line)
-    (move-to-column col)))
-
-(defun move-line-up ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines -1))
-    (move-to-column col)))
-
-(defun new-line-below ()
-  (interactive)
-  (if (eolp)
-      (newline)
-    (end-of-line)
-    (newline))
+  (end-of-line)
+  (newline)
   (indent-for-tab-command))
 
-(defun new-line-above ()
+(defun open-line-above ()
   (interactive)
   (beginning-of-line)
   (newline)
@@ -71,14 +52,39 @@ region-end is used. Adds the duplicated text to the kill ring."
     (forward-char -1))
   (duplicate-region num (point-at-bol) (1+ (point-at-eol))))
 
-(defun yank-indented ()
-  (interactive)
-  (let ((start (point)))
-    (yank)
-    (indent-region start (point))))
+;; automatically indenting yanked text if in programming-modes
 
-;; define as yank-command for delsel.el
-(put 'yank-indented 'delete-selection 'yank-indented)
+(require 'dash)
+
+(defvar yank-indent-modes '(prog-mode
+                            js2-mode)
+  "Modes in which to indent regions that are yanked (or yank-popped)")
+
+(defvar yank-advised-indent-threshold 1000
+  "Threshold (# chars) over which indentation does not automatically occur.")
+
+(defun yank-advised-indent-function (beg end)
+  "Do indentation, as long as the region isn't too large."
+  (if (<= (- end beg) yank-advised-indent-threshold)
+      (indent-region beg end nil)))
+
+(defadvice yank (after yank-indent activate)
+  "If current mode is one of 'yank-indent-modes, indent yanked text (with prefix arg don't indent)."
+  (if (and (not (ad-get-arg 0))
+           (--any? (derived-mode-p it) yank-indent-modes))
+      (let ((transient-mark-mode nil))
+        (yank-advised-indent-function (region-beginning) (region-end)))))
+
+(defadvice yank-pop (after yank-pop-indent activate)
+  "If current mode is one of 'yank-indent-modes, indent yanked text (with prefix arg don't indent)."
+  (if (and (not (ad-get-arg 0))
+           (member major-mode yank-indent-modes))
+      (let ((transient-mark-mode nil))
+        (yank-advised-indent-function (region-beginning) (region-end)))))
+
+(defun yank-unindented ()
+  (interactive)
+  (yank 1))
 
 ;; toggle quotes
 
@@ -248,16 +254,25 @@ region-end is used. Adds the duplicated text to the kill ring."
      ((looking-back ")\\|}\\|\\]") (backward-list))
      (t (backward-char)))))
 
-(defun zap-to-char-exclusive (arg char)
-  "Kill up to, but not including ARGth occurrence of CHAR.
-Case is ignored if `case-fold-search' is non-nil in the current buffer.
-Goes backward if ARG is negative; error if CHAR not found."
-  (interactive "p\ncZap to char (exclusive): ")
-  ;; Avoid "obsolete" warnings for translation-table-for-input.
-  (with-no-warnings
-    (if (char-table-p translation-table-for-input)
-        (setq char (or (aref translation-table-for-input char) char))))
-  (kill-region (point) (progn
-                         (search-forward (char-to-string char) nil nil arg)
-                         (goto-char (if (> arg 0) (1- (point)) (1+ (point))))
-                         (point))))
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR.")
+
+(defun css-expand-statement ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (search-backward "{")
+    (forward-char 1)
+    (let ((beg (point)))
+      (newline)
+      (er/mark-inside-pairs)
+      (replace-regexp ";" ";\n" nil (region-beginning) (region-end))
+      (indent-region beg (point)))))
+
+(defun css-contract-statement ()
+  (interactive)
+  (end-of-line)
+  (search-backward "{")
+  (while (not (looking-at "}"))
+    (join-line -1))
+  (back-to-indentation))
