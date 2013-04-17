@@ -59,6 +59,8 @@
    (cons 'move-text melpa)
    (cons 'gist melpa)
    (cons 'htmlize melpa)
+   (cons 'visual-regexp melpa)
+   (cons 'smartparens melpa)
    (cons 'elisp-slime-nav melpa)
    ;(cons 'elnode marmalade)
    (cons 'slime-js marmalade)
@@ -94,6 +96,9 @@
 (require 'setup-html-mode)
 (require 'setup-paredit)
 
+;; Default setup of smartparens
+(require 'smartparens-config)
+
 ;; Language specific setup files
 (eval-after-load 'js2-mode '(require 'setup-js2-mode))
 (eval-after-load 'ruby-mode '(require 'setup-ruby-mode))
@@ -106,6 +111,11 @@
 
 ;; Map files to modes
 (require 'mode-mappings)
+
+;; Visual regexp
+(require 'visual-regexp)
+(define-key global-map (kbd "M-&") 'vr/query-replace)
+(define-key global-map (kbd "M-/") 'vr/replace)
 
 ;; Functions (load all files in defuns-dir)
 (setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
