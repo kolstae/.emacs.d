@@ -42,15 +42,15 @@
 
 ;; Clojure-test
 
-(defun custom-persp/clj-test ()
-  (interactive)
-  (custom-persp "clj-test"
-                (find-file "~/projects/clojure-test/project.clj")))
+;; (defun custom-persp/clj-test ()
+;;   (interactive)
+;;   (custom-persp "clj-test"
+;;                 (find-file "~/projects/clojure-test/project.clj")))
 
-(project-specifics "projects/clojure-test"
-                   (ffip-local-patterns "*.clj" "*.md"))
+;; (project-specifics "projects/clojure-test"
+;;                    (ffip-local-patterns "*.clj" "*.md"))
 
-(define-key persp-mode-map (kbd "C-x p c") 'custom-persp/clj-test)
+;; (define-key persp-mode-map (kbd "C-x p c") 'custom-persp/clj-test)
 
 ;; Surayia-products
 
@@ -60,6 +60,18 @@
                 (find-file "~/projects/suraiya-products/project.clj")))
 
 (project-specifics "projects/suraiya-products"
-                   (ffip-local-patterns "*.clj" "*.md"))
+  (ffip-local-patterns "*.clj" "*.md" "*.js"))
 
 (define-key persp-mode-map (kbd "C-x p s") 'custom-persp/suraiya)
+
+;; T-Rank
+
+(defun custom-persp/trank ()
+  (interactive)
+  (custom-persp "trank"
+                (find-file "~/projects/netrank-clj/project.clj")))
+
+(project-specifics "projects/netrank-clj"
+  (ffip-local-patterns "*.clj" "*.md" "*.js"))
+
+(define-key persp-mode-map (kbd "C-x p t") 'custom-persp/trank)
