@@ -16,6 +16,7 @@
         c-electric-paren
         c-electric-semi&comma
         c-electric-slash
+        c-electric-star
         change-inner
         change-number-at-point
         change-outer
@@ -36,9 +37,12 @@
         js2-end-of-line
         js2-insert-and-indent
         js2r-inline-var
+        js2r-move-line-up
+        js2r-split-string
         js2r-var-to-this
         kill-and-retry-line
         kill-region-or-backward-word
+        kill-sexp
         magit-stage-item
         markdown-enter-key
         move-line-down
@@ -58,11 +62,14 @@
         org-return-indent
         org-self-insert-command
         org-shiftright
+        org-yank
         orgtbl-self-insert-command
         paredit-backslash
         paredit-backward
         paredit-backward-up
+        paredit-close-round
         paredit-close-square
+        paredit-comment-dwim
         paredit-doublequote
         paredit-forward
         paredit-forward-delete
@@ -94,12 +101,22 @@
         sp--self-insert-command
         sp-remove-active-pair-overlay
         sp-self-insert-command
+        subtract-number-at-point
         tagedit-forward-slurp-tag
+        tagedit-insert-dot
         tagedit-insert-equal
+        tagedit-insert-exclamation-mark
+        tagedit-insert-gt
+        tagedit-insert-hash
         tagedit-insert-lt
         tagedit-insert-quote
+        tagedit-kill
         tagedit-kill-attribute
+        tagedit-maybe-insert-slash
         tagedit-raise-tag
+        tagedit-splice-tag
+        tern-ac-dot-complete
+        toggle-quotes
         touch-buffer-file
         transpose-params
         transpose-sexps
@@ -112,7 +129,10 @@
 (setq mc/cmds-to-run-once
       '(
         adv-insert-new-number
+        cleanup-buffer
+        describe-key
         dired-toggle-read-only
+        edebug-next-mode
         eval-expression
         goto-line-with-feedback
         handle-switch-frame
@@ -123,6 +143,8 @@
         magit-status
         mc/add-cursor-on-click
         mc/add-cursors-to-all-matches
+        persp-switch
+        shell
         smex
         wgrep-change-to-wgrep-mode
         wgrep-finish-edit
