@@ -33,6 +33,7 @@
         forward-paragraph
         forward-sentence
         forward-sexp
+        god-mode-repeat
         hippie-expand-no-case-fold
         html-wrap-in-tag
         js2-beginning-of-line
@@ -147,6 +148,7 @@
         mc/add-cursor-on-click
         mc/add-cursors-to-all-matches
         multiple-cursors-mode
+        god-local-mode
         persp-switch
         shell
         smex
