@@ -75,6 +75,7 @@
         paredit-comment-dwim
         paredit-doublequote
         paredit-forward
+        paredit-forward-barf-sexp
         paredit-forward-delete
         paredit-forward-down
         paredit-forward-kill-word
@@ -127,7 +128,7 @@
         transpose-sexps
         wrap-region-trigger
         yank-indented
-        yas/expand
+        yas-expand
         zap-up-to-char
         ))
 

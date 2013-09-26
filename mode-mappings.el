@@ -8,6 +8,8 @@
 
 ;; CSS
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
+(autoload 'turn-on-css-eldoc "css-eldoc")
+(add-hook 'css-mode-hook 'turn-on-css-eldoc)
 
 ;; Restclient
 (add-to-list 'auto-mode-alist '("\\.restclient$" . restclient-mode))
@@ -85,7 +87,7 @@
 (autoload 'markdown-mode "markdown-mode")
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
-(add-hook 'markdown-mode-hook (lambda () (define-key markdown-mode-map (kbd "<tab>") 'yas/expand)))
+(add-hook 'markdown-mode-hook (lambda () (define-key markdown-mode-map (kbd "<tab>") 'yas-expand)))
 
 ;; org-mode
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
