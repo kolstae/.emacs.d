@@ -22,7 +22,7 @@
 (define-key nrepl-interaction-mode-map (kbd "C-,") 'complete-symbol)
 
 ;; Configure nrepl.el
-(setq nrepl-hide-special-buffers t)
+;; (setq nrepl-hide-special-buffers t)
 (setq nrepl-popup-stacktraces-in-repl t)
 (setq nrepl-history-file "~/.emacs.d/nrepl-history")
 
