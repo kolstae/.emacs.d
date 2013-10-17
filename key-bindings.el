@@ -313,7 +313,7 @@
 (global-set-key (kbd "C-x C-o ht") (ffip-create-pattern-file-finder "*.html"))
 (global-set-key (kbd "C-x C-o jp") (ffip-create-pattern-file-finder "*.jsp"))
 (global-set-key (kbd "C-x C-o cs") (ffip-create-pattern-file-finder "*.css"))
-(global-set-key (kbd "C-x C-o cl") (ffip-create-pattern-file-finder "*.clj"))
+(global-set-key (kbd "C-x C-o cl") (ffip-create-pattern-file-finder "*.clj" "*.cljs"))
 (global-set-key (kbd "C-x C-o el") (ffip-create-pattern-file-finder "*.el"))
 (global-set-key (kbd "C-x C-o md") (ffip-create-pattern-file-finder "*.md"))
 (global-set-key (kbd "C-x C-o rb") (ffip-create-pattern-file-finder "*.rb"))
