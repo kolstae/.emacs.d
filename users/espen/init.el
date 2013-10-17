@@ -3,6 +3,9 @@
 ;; Disallow scrolling with mouse wheel
 (mouse-wheel-mode nil)
 
+;; Disable scroll-bar
+(scroll-bar-mode -1)
+
 ;; Load paredit in clojure mode
 (add-hook 'clojure-mode-hook 'paredit-mode)
 
