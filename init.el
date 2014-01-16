@@ -56,7 +56,6 @@
    '(magit
      paredit
      move-text
-     god-mode
      gist
      htmlize
      visual-regexp
@@ -79,7 +78,10 @@
      gitconfig-mode
      gitignore-mode
      clojure-mode
-     nrepl)))
+     groovy-mode
+     prodigy
+     cider
+     cider-tracing)))
 
 (condition-case nil
     (init--install-packages)
@@ -97,14 +99,10 @@
 
 ;; guide-key
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
-
-;; god-mode
-(require 'god-mode)
-(global-set-key (kbd "<escape>") 'god-local-mode)
 
 ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
@@ -120,6 +118,12 @@
 (require 'setup-html-mode)
 (require 'setup-paredit)
 
+(require 'prodigy)
+(global-set-key (kbd "C-x M-m") 'prodigy)
+
+;; Font lock dash.el
+(eval-after-load "dash" '(dash-enable-font-lock))
+
 ;; Default setup of smartparens
 (require 'smartparens-config)
 (setq sp-autoescape-string-quote nil)
@@ -127,7 +131,8 @@
           restclient-mode-hook
           js-mode-hook
           ruby-mode
-          markdown-mode)
+          markdown-mode
+          groovy-mode)
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
