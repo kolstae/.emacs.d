@@ -12,4 +12,5 @@ site-lisp/adventur-mode
 .DS_Store
 .yas-compiled-snippets.el
 .cask
+/history
 /nrepl-history
