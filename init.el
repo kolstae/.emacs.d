@@ -201,7 +201,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
 
 ;; Email, baby
-(require 'setup-mu4e)
+;; (require 'setup-mu4e)
 
 ;; Emacs server
 (require 'server)

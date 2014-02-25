@@ -35,8 +35,8 @@
                 (find-file "~/.emacs.d/init.el")))
 
 (project-specifics ".emacs.d"
-                   (ffip-local-excludes "swank")
-                   (ffip-local-patterns "*.el" "*.md" "*.org"))
+  (ffip-local-excludes "swank")
+  (ffip-local-patterns "*.el" "*.md" "*.org"))
 
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
 
@@ -72,6 +72,7 @@
                 (find-file "~/projects/netrank-clj/project.clj")))
 
 (project-specifics "projects/netrank-clj"
-  (ffip-local-patterns "*.clj" "*.md" "*.js"))
+  (ffip-local-excludes "out" "target")
+  (ffip-local-patterns "*.clj" "*.cljs" "*.md" "*.js"))
 
 (define-key persp-mode-map (kbd "C-x p t") 'custom-persp/trank)
