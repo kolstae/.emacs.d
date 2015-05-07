@@ -40,29 +40,17 @@
 
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
 
-;; Clojure-test
+;; BvD-import
 
-;; (defun custom-persp/clj-test ()
-;;   (interactive)
-;;   (custom-persp "clj-test"
-;;                 (find-file "~/projects/clojure-test/project.clj")))
-
-;; (project-specifics "projects/clojure-test"
-;;                    (ffip-local-patterns "*.clj" "*.md"))
-
-;; (define-key persp-mode-map (kbd "C-x p c") 'custom-persp/clj-test)
-
-;; Surayia-products
-
-(defun custom-persp/suraiya ()
+(defun custom-persp/bvd-import ()
   (interactive)
-  (custom-persp "suraiya-products"
-                (find-file "~/projects/suraiya-products/project.clj")))
+  (custom-persp "bvd-import"
+                (find-file "~/projects/trank/bvd-import/project.clj")))
 
-(project-specifics "projects/suraiya-products"
-  (ffip-local-patterns "*.clj" "*.md" "*.js"))
+(project-specifics "projects/trank/bvd-import"
+  (ffip-local-patterns "*.clj" "*.md" "*.sql" ""))
 
-(define-key persp-mode-map (kbd "C-x p s") 'custom-persp/suraiya)
+(define-key persp-mode-map (kbd "C-x p b") 'custom-persp/bvd-import)
 
 ;; T-Rank
 
