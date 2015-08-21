@@ -68,6 +68,7 @@
      flycheck-pos-tip
      flycheck-clojure
      flx
+     f
      flx-ido
      dired-details
      css-eldoc
@@ -82,14 +83,14 @@
      highlight-escape-sequences
      whitespace-cleanup-mode
      elisp-slime-nav
-     git-commit-mode
-     gitconfig-mode
      dockerfile-mode
-     gitignore-mode
      clojure-mode
+     clojure-mode-extra-font-locking
      groovy-mode
      prodigy
      cider
+     yesql-ghosts
+     string-edit
      )))
 
 (condition-case nil
@@ -142,7 +143,8 @@
           java-mode
           ruby-mode
           markdown-mode
-          groovy-mode)
+          groovy-mode
+          scala-mode)
   (add-hook it 'turn-on-smartparens-mode))
 
 ;; Language specific setup files
