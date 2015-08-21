@@ -48,7 +48,7 @@
                 (find-file "~/projects/trank/bvd-import/project.clj")))
 
 (project-specifics "projects/trank/bvd-import"
-  (ffip-local-patterns "*.clj" "*.md" "*.sql" ""))
+  (ffip-local-patterns "*.clj" "*.md" "*.sql" "*.sh"))
 
 (define-key persp-mode-map (kbd "C-x p b") 'custom-persp/bvd-import)
 

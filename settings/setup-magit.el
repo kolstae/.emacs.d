@@ -136,3 +136,5 @@
   '(define-key flyspell-mode-map (kbd "C-.") nil))
 
 (provide 'setup-magit)
+
+(setq magit-last-seen-setup-instructions "1.4.0")
