@@ -86,6 +86,8 @@
      dockerfile-mode
      clojure-mode
      clojure-mode-extra-font-locking
+     edn
+     inflections
      groovy-mode
      prodigy
      cider
