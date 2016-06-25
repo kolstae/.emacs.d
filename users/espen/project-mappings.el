@@ -52,6 +52,18 @@
 
 (define-key persp-mode-map (kbd "C-x p b") 'custom-persp/bvd-import)
 
+;; Kraken
+
+(defun custom-persp/kraken ()
+  (interactive)
+  (custom-persp "kraken"
+                (find-file "~/projects/trank/kraken/project.clj")))
+
+(project-specifics "projects/trank/kraken"
+  (ffip-local-patterns "*.clj" "*.md" "*.sql" "*.sh"))
+
+(define-key persp-mode-map (kbd "C-x p k") 'custom-persp/kraken)
+
 ;; T-Rank
 
 (defun custom-persp/trank ()
@@ -64,3 +76,29 @@
   (ffip-local-patterns "*.clj" "*.cljs" "*.md" "*.js"))
 
 (define-key persp-mode-map (kbd "C-x p t") 'custom-persp/trank)
+
+;; FINN ops-utils
+
+(defun custom-persp/ops-utils ()
+  (interactive)
+  (custom-persp "ops-utils"
+                (find-file "~/projects/ops-utils/puppet/hieradata/common.yaml")))
+
+(project-specifics "projects/ops-utils"
+  (ffip-local-excludes "out" "target")
+  (ffip-local-patterns "*.pp" "*.erb" "*.yaml" "*.rb"))
+
+(define-key persp-mode-map (kbd "C-x p o") 'custom-persp/ops-utils)
+
+;; FINN puppetroot
+
+(defun custom-persp/puppetroot ()
+  (interactive)
+  (custom-persp "puppetroot"
+                (find-file "~/projects/puppetroot/README.md")))
+
+(project-specifics "projects/puppetroot"
+  (ffip-local-excludes "out" "target")
+  (ffip-local-patterns "*.pp" "*.erb" "*.yaml" "*.rb"))
+
+(define-key persp-mode-map (kbd "C-x p r") 'custom-persp/puppetroot)
